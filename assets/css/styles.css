@@ -1,0 +1,2990 @@
+/* =====================================================
+       ROOT
+    ====================================================== */
+
+    :root{
+
+      --gold:#f5b400;
+      --gold-light:#ffd45a;
+
+      --white:#ffffff;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.80);
+
+      --glass:rgba(255,255,255,.10);
+      --glass-strong:rgba(255,255,255,.16);
+
+      --line:rgba(255,255,255,.20);
+
+      --dark:#0b1016;
+      --dark-2:#111923;
+
+      --max:1150px;
+
+      --shadow:
+        0 25px 70px rgba(0,0,0,.28);
+
+    }
+
+
+    /* =====================================================
+       RESET
+    ====================================================== */
+
+    *,
+    *::before,
+    *::after{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+
+    html{
+      scroll-behavior:smooth;
+      scroll-padding-top:88px;
+    }
+
+
+    body{
+
+      width:100%;
+      min-height:100%;
+
+      background:#eef2f5;
+
+      color:#fff;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      overflow-x:hidden;
+
+      line-height:1.6;
+
+    }
+
+
+    img{
+      max-width:100%;
+    }
+
+
+    a{
+      color:inherit;
+    }
+
+
+    button{
+      font:inherit;
+    }
+
+
+    ::selection{
+      background:var(--gold);
+      color:#111;
+    }
+
+
+    /* =====================================================
+       SCROLLBAR
+    ====================================================== */
+
+    ::-webkit-scrollbar{
+      width:7px;
+    }
+
+    ::-webkit-scrollbar-track{
+      background:#e8edf1;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background:var(--gold);
+    }
+
+    ::-webkit-scrollbar-thumb:hover{
+      background:#d99e00;
+    }
+
+
+    /* =====================================================
+       HERO
+    ====================================================== */
+
+    .kignature-hero{
+
+      position:relative;
+
+      width:100%;
+      height:760px;
+      min-height:650px;
+
+      overflow:hidden;
+
+      isolation:isolate;
+
+      background:#17202a;
+
+    }
+
+
+    .kignature-slides{
+
+      position:absolute;
+
+      inset:0;
+
+      overflow:hidden;
+
+    }
+
+
+    .kignature-slide{
+
+      position:absolute;
+
+      inset:-3%;
+
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+
+      opacity:0;
+      visibility:hidden;
+
+      transform:
+        translate3d(8%,0,0)
+        scale(1.10);
+
+      filter:
+        blur(5px)
+        brightness(.88)
+        saturate(1.12);
+
+      clip-path:
+        polygon(
+          100% 0,
+          100% 0,
+          100% 100%,
+          100% 100%
+        );
+
+      transition:
+        opacity .35s ease,
+        visibility .35s ease,
+        transform .85s cubic-bezier(.16,1,.3,1),
+        filter .65s ease,
+        clip-path .75s cubic-bezier(.77,0,.18,1);
+
+    }
+
+
+    .kignature-slide.active{
+
+      opacity:1;
+
+      visibility:visible;
+
+      transform:
+        translate3d(0,0,0)
+        scale(1);
+
+      filter:
+        blur(0)
+        brightness(1)
+        saturate(1.08);
+
+      clip-path:
+        polygon(
+          0 0,
+          100% 0,
+          100% 100%,
+          0 100%
+        );
+
+      animation:
+        heroKenBurns 3.1s ease-out both;
+
+    }
+
+
+    .kignature-slide.previous{
+
+      opacity:0;
+
+      visibility:hidden;
+
+      transform:
+        translate3d(-7%,0,0)
+        scale(1.025);
+
+      filter:
+        blur(3px)
+        brightness(.85);
+
+      clip-path:
+        polygon(
+          0 0,
+          0 0,
+          0 100%,
+          0 100%
+        );
+
+    }
+
+
+    @keyframes heroKenBurns{
+
+      0%{
+        background-size:106%;
+        background-position:50% 50%;
+      }
+
+      100%{
+        background-size:100%;
+        background-position:52% 48%;
+      }
+
+    }
+
+
+    .kignature-slide.active::after{
+
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      pointer-events:none;
+
+      background:
+        linear-gradient(
+          110deg,
+          transparent 25%,
+          rgba(255,255,255,.08) 43%,
+          rgba(245,180,0,.12) 49%,
+          rgba(255,255,255,.05) 54%,
+          transparent 72%
+        );
+
+      transform:translateX(-120%);
+
+      animation:
+        heroLight .95s cubic-bezier(.16,1,.3,1) forwards;
+
+    }
+
+
+    @keyframes heroLight{
+
+      from{
+        transform:translateX(-120%);
+      }
+
+      to{
+        transform:translateX(120%);
+      }
+
+    }
+
+
+    /* =====================================================
+       HERO OVERLAY
+    ====================================================== */
+
+    .kignature-overlay{
+
+      position:absolute;
+
+      inset:0;
+
+      z-index:2;
+
+      pointer-events:none;
+
+      background:
+
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.58) 0%,
+          rgba(0,0,0,.28) 35%,
+          rgba(0,0,0,.08) 72%,
+          rgba(0,0,0,.20) 100%
+        ),
+
+        linear-gradient(
+          0deg,
+          rgba(0,0,0,.45),
+          transparent 42%,
+          rgba(0,0,0,.12)
+        );
+
+    }
+
+
+    /* =====================================================
+       HERO GRID
+    ====================================================== */
+
+    .kignature-grid{
+
+      position:absolute;
+
+      inset:0;
+
+      z-index:3;
+
+      pointer-events:none;
+
+      opacity:.045;
+
+      background-image:
+
+        linear-gradient(
+          rgba(255,255,255,.45) 1px,
+          transparent 1px
+        ),
+
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.45) 1px,
+          transparent 1px
+        );
+
+      background-size:80px 80px;
+
+      mask-image:
+        linear-gradient(
+          90deg,
+          black,
+          transparent 90%
+        );
+
+    }
+
+
+    /* =====================================================
+       HERO GLOW
+    ====================================================== */
+
+    .kignature-glow{
+
+      position:absolute;
+
+      z-index:4;
+
+      left:-180px;
+      bottom:-250px;
+
+      width:650px;
+      height:650px;
+
+      border-radius:50%;
+
+      pointer-events:none;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(245,180,0,.18),
+          transparent 68%
+        );
+
+      filter:blur(20px);
+
+      animation:
+        heroGlow 5s ease-in-out infinite alternate;
+
+    }
+
+
+    @keyframes heroGlow{
+
+      from{
+        transform:
+          translate(0,0)
+          scale(1);
+      }
+
+      to{
+        transform:
+          translate(100px,-40px)
+          scale(1.15);
+      }
+
+    }
+
+
+    /* =====================================================
+       HERO CATEGORY
+    ====================================================== */
+
+    .kignature-category{
+
+      position:absolute;
+
+      z-index:10;
+
+      top:36px;
+      left:50%;
+
+      transform:translateX(-50%);
+
+      display:flex;
+
+      align-items:center;
+
+      gap:10px;
+
+      padding:13px 24px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.35);
+
+      border-radius:50px;
+
+      background:
+        rgba(0,0,0,.28);
+
+      backdrop-filter:blur(15px);
+
+      -webkit-backdrop-filter:blur(15px);
+
+      color:#fff;
+
+      font-size:11px;
+
+      font-weight:800;
+
+      letter-spacing:3px;
+
+      white-space:nowrap;
+
+      box-shadow:
+        0 15px 45px rgba(0,0,0,.18);
+
+      transition:
+        opacity .35s ease;
+
+    }
+
+
+    .kignature-dot{
+
+      width:8px;
+      height:8px;
+
+      flex-shrink:0;
+
+      border-radius:50%;
+
+      background:var(--gold);
+
+      box-shadow:
+        0 0 8px var(--gold),
+        0 0 22px rgba(245,180,0,.75);
+
+      animation:
+        kignaturePulse 1.4s infinite;
+
+    }
+
+
+    @keyframes kignaturePulse{
+
+      0%,100%{
+        transform:scale(1);
+      }
+
+      50%{
+        transform:scale(1.55);
+      }
+
+    }
+
+
+    /* =====================================================
+       HERO CENTER
+    ====================================================== */
+
+    .kignature-brand{
+
+      position:absolute;
+
+      z-index:9;
+
+      top:50%;
+      left:50%;
+
+      width:min(900px,90%);
+
+      transform:
+        translate(-50%,-50%);
+
+      text-align:center;
+
+      pointer-events:none;
+
+    }
+
+
+    .kignature-brand h1{
+
+      font-size:
+        clamp(58px,9vw,118px);
+
+      line-height:.92;
+
+      font-weight:900;
+
+      letter-spacing:-6px;
+
+      color:#fff;
+
+      text-shadow:
+        0 8px 35px rgba(0,0,0,.65),
+        0 2px 5px rgba(0,0,0,.5);
+
+      animation:
+        brandReveal .75s cubic-bezier(.16,1,.3,1);
+
+    }
+
+
+    .kignature-brand h1 span{
+      color:var(--gold);
+    }
+
+
+    .kignature-line{
+
+      width:100px;
+      height:3px;
+
+      margin:25px auto;
+
+      background:var(--gold);
+
+      box-shadow:
+        0 0 18px
+        rgba(245,180,0,.8);
+
+    }
+
+
+    .kignature-brand p{
+
+      font-size:12px;
+
+      font-weight:800;
+
+      letter-spacing:5px;
+
+      color:#fff;
+
+      text-shadow:
+        0 3px 15px rgba(0,0,0,.8);
+
+      transition:
+        opacity .3s ease,
+        transform .3s ease;
+
+    }
+
+
+    @keyframes brandReveal{
+
+      from{
+
+        opacity:0;
+
+        transform:
+          translateY(25px)
+          scale(.92);
+
+        filter:blur(12px);
+
+      }
+
+      to{
+
+        opacity:1;
+
+        transform:
+          translateY(0)
+          scale(1);
+
+        filter:blur(0);
+
+      }
+
+    }
+
+
+    /* =====================================================
+       SIDE TEXT
+    ====================================================== */
+
+    .kignature-side{
+
+      position:absolute;
+
+      z-index:10;
+
+      right:16px;
+      top:50%;
+
+      transform:
+        translateY(-50%)
+        rotate(90deg);
+
+      color:#fff;
+
+      font-size:10px;
+
+      font-weight:800;
+
+      letter-spacing:4px;
+
+      white-space:nowrap;
+
+      text-shadow:
+        0 2px 10px rgba(0,0,0,.7);
+
+    }
+
+
+    .kignature-side::before{
+
+      content:"";
+
+      position:absolute;
+
+      left:-72px;
+      top:50%;
+
+      width:50px;
+      height:1px;
+
+      background:var(--gold);
+
+    }
+
+
+    /* =====================================================
+       HERO ARROWS
+    ====================================================== */
+
+    .kignature-arrows{
+
+      position:absolute;
+
+      z-index:12;
+
+      right:38px;
+      top:50%;
+
+      transform:translateY(-50%);
+
+      display:flex;
+
+      flex-direction:column;
+
+      gap:10px;
+
+    }
+
+
+    .kignature-arrow{
+
+      width:52px;
+      height:52px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.45);
+
+      background:
+        rgba(0,0,0,.22);
+
+      color:#fff;
+
+      cursor:pointer;
+
+      font-size:21px;
+
+      backdrop-filter:blur(12px);
+
+      transition:
+        .3s cubic-bezier(.16,1,.3,1);
+
+    }
+
+
+    .kignature-arrow:hover{
+
+      background:var(--gold);
+
+      color:#111;
+
+      border-color:var(--gold);
+
+      transform:
+        translateX(-5px)
+        scale(1.05);
+
+    }
+
+
+    /* =====================================================
+       HERO DOTS
+    ====================================================== */
+
+    .kignature-controls{
+
+      position:absolute;
+
+      z-index:12;
+
+      left:50%;
+      bottom:35px;
+
+      width:min(1250px,90%);
+
+      transform:translateX(-50%);
+
+      display:flex;
+
+      justify-content:flex-start;
+
+    }
+
+
+    .kignature-dots{
+
+      display:flex;
+
+      flex-wrap:wrap;
+
+      gap:5px;
+
+      max-width:700px;
+
+    }
+
+
+    .kignature-slide-dot{
+
+      width:13px;
+      height:4px;
+
+      padding:0;
+
+      border:0;
+
+      cursor:pointer;
+
+      background:
+        rgba(255,255,255,.55);
+
+      transition:
+        width .35s ease,
+        background .25s ease;
+
+    }
+
+
+    .kignature-slide-dot:hover{
+      background:#fff;
+    }
+
+
+    .kignature-slide-dot.active{
+
+      width:45px;
+
+      background:var(--gold);
+
+      box-shadow:
+        0 0 10px
+        rgba(245,180,0,.7);
+
+    }
+
+
+    /* =====================================================
+       PROGRESS
+    ====================================================== */
+
+    .kignature-progress{
+
+      position:absolute;
+
+      z-index:20;
+
+      left:0;
+      bottom:0;
+
+      width:100%;
+      height:3px;
+
+      background:
+        rgba(255,255,255,.25);
+
+    }
+
+
+    .kignature-progress-bar{
+
+      width:0;
+      height:100%;
+
+      background:var(--gold);
+
+      box-shadow:
+        0 0 12px
+        rgba(245,180,0,.9);
+
+    }
+
+
+    /* =====================================================
+       NAVIGATION
+    ====================================================== */
+
+    .ka-navbar{
+
+      position:sticky;
+
+      top:0;
+
+      z-index:50;
+
+      width:100%;
+
+      background:
+        rgba(255,255,255,.96);
+
+      border-bottom:
+        1px solid
+        rgba(0,0,0,.10);
+
+      backdrop-filter:blur(18px);
+
+      -webkit-backdrop-filter:blur(18px);
+
+      box-shadow:
+        0 8px 30px rgba(0,0,0,.08);
+
+    }
+
+
+    .ka-nav-inner{
+
+      width:min(1280px,94%);
+
+      min-height:82px;
+
+      margin:auto;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      gap:34px;
+
+      flex-wrap:wrap;
+
+    }
+
+
+    .ka-nav-inner a{
+
+      position:relative;
+
+      color:#27323b;
+
+      text-decoration:none;
+
+      font-size:13px;
+
+      font-weight:800;
+
+      letter-spacing:1.3px;
+
+      padding:12px 0;
+
+      transition:.3s ease;
+
+    }
+
+
+    .ka-nav-inner a::after{
+
+      content:"";
+
+      position:absolute;
+
+      left:0;
+      bottom:3px;
+
+      width:0;
+      height:2px;
+
+      background:var(--gold);
+
+      transition:.3s ease;
+
+    }
+
+
+    .ka-nav-inner a:hover{
+      color:#111;
+    }
+
+
+    .ka-nav-inner a:hover::after{
+      width:100%;
+    }
+
+
+    /* =====================================================
+       SECTION BASE
+    ====================================================== */
+
+    .ka-section{
+
+      position:relative;
+
+      padding:120px 20px;
+
+      min-height:500px;
+
+      overflow:hidden;
+
+      color:#fff;
+
+      background-size:cover;
+
+      background-position:center;
+
+      background-attachment:fixed;
+
+      isolation:isolate;
+
+    }
+
+
+    /* =====================================================
+       SECTION BACKGROUNDS
+    ====================================================== */
+
+    #about{
+
+      background-image:
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2200&q=85");
+
+    }
+
+
+    #experience{
+
+      background-image:
+        url("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2200&q=85");
+
+    }
+
+
+    #skills{
+
+      background-image:
+        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2200&q=85");
+
+    }
+    #operations{
+      background-image:
+        url("https://lh3.googleusercontent.com/d/1d3paRCj3m0G2yRBSciax7FcipAJ7790h=w2000?authuser=0");
+
+
+    }
+
+
+    #projects{
+
+      background-image:
+        url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2200&q=85");
+
+    }
+
+
+    #certifications{
+
+      background-image:
+        url("https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=2200&q=85");
+
+    }
+
+
+    #history{
+
+      background-image:
+        url("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2200&q=85");
+
+    }
+
+
+    #achievements{
+
+      background-image:
+        url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2200&q=85");
+
+    }
+
+
+    #contact{
+
+      background-image:
+        url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2200&q=85");
+
+    }
+
+
+    /* =====================================================
+       SECTION OVERLAY
+    ====================================================== */
+
+    .ka-section::before{
+
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      z-index:-2;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(7,14,21,.78),
+          rgba(7,14,21,.43) 45%,
+          rgba(7,14,21,.55)
+        );
+
+    }
+
+
+    .ka-section::after{
+
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      z-index:-1;
+
+      background:
+        linear-gradient(
+          0deg,
+          rgba(4,10,15,.68),
+          transparent 30%,
+          rgba(4,10,15,.25)
+        );
+
+      pointer-events:none;
+
+    }
+
+
+    /* =====================================================
+       SECTION INNER
+    ====================================================== */
+
+    .ka-section-inner{
+
+      width:min(var(--max),92%);
+
+      margin:auto;
+
+      position:relative;
+
+      z-index:3;
+
+    }
+
+
+    /* =====================================================
+       LABEL
+    ====================================================== */
+
+    .ka-label{
+
+      display:block;
+
+      margin-bottom:20px;
+
+      color:var(--gold-light);
+
+      font-size:12px;
+
+      font-weight:900;
+
+      letter-spacing:3px;
+
+      text-shadow:
+        0 2px 12px rgba(0,0,0,.7);
+
+    }
+
+
+    /* =====================================================
+       SECTION TITLE
+    ====================================================== */
+
+    .ka-section h2{
+
+      margin-bottom:28px;
+
+      font-size:
+        clamp(40px,5vw,68px);
+
+      line-height:1;
+
+      letter-spacing:-2.5px;
+
+      color:#fff;
+
+      text-shadow:
+        0 5px 20px rgba(0,0,0,.55);
+
+    }
+
+
+    .ka-section h2 span{
+      color:var(--gold);
+    }
+
+
+    .ka-section p{
+
+      max-width:800px;
+
+      color:
+        rgba(255,255,255,.91);
+
+      font-size:17px;
+
+      line-height:1.85;
+
+      text-shadow:
+        0 2px 10px rgba(0,0,0,.5);
+
+    }
+
+
+    /* =====================================================
+       ABOUT
+    ====================================================== */
+
+    .ka-about-layout{
+
+      display:grid;
+
+      grid-template-columns:
+        1.25fr .75fr;
+
+      gap:75px;
+
+      align-items:center;
+
+    }
+
+
+    .ka-about-copy p + p{
+      margin-top:20px;
+    }
+
+
+    .ka-about-copy strong{
+      color:#fff;
+    }
+
+
+    /* ABOUT INFO */
+
+    .ka-about-info{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap:14px;
+
+      margin-top:35px;
+
+    }
+
+
+    .ka-about-info-card{
+
+      padding:20px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.25);
+
+      background:
+        rgba(255,255,255,.10);
+
+      backdrop-filter:blur(8px);
+
+      box-shadow:
+        0 15px 40px rgba(0,0,0,.18);
+
+    }
+
+
+    .ka-about-info-card span{
+
+      display:block;
+
+      color:
+        rgba(255,255,255,.58);
+
+      font-size:10px;
+
+      font-weight:900;
+
+      letter-spacing:2px;
+
+      margin-bottom:7px;
+
+    }
+
+
+    .ka-about-info-card strong{
+
+      display:block;
+
+      font-size:15px;
+
+      line-height:1.4;
+
+    }
+
+
+    /* =====================================================
+       ABOUT BADGE
+    ====================================================== */
+
+    .ka-about-badge{
+
+      min-height:340px;
+
+      display:flex;
+
+      flex-direction:column;
+
+      align-items:center;
+
+      justify-content:center;
+
+      border:
+        1px solid
+        rgba(255,255,255,.30);
+
+      background:
+        rgba(255,255,255,.10);
+
+      backdrop-filter:blur(8px);
+
+      position:relative;
+
+      overflow:hidden;
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.25);
+
+    }
+
+
+    .ka-about-badge::before{
+
+      content:"";
+
+      position:absolute;
+
+      width:250px;
+      height:250px;
+
+      border-radius:50%;
+
+      border:
+        1px solid
+        rgba(245,180,0,.45);
+
+      animation:
+        badgeSpin 12s linear infinite;
+
+    }
+
+
+    .ka-about-badge::after{
+
+      content:"";
+
+      position:absolute;
+
+      width:160px;
+      height:160px;
+
+      border-radius:50%;
+
+      border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    }
+
+
+    .ka-about-badge strong{
+
+      position:relative;
+
+      z-index:2;
+
+      font-size:45px;
+
+      letter-spacing:-2px;
+
+      text-shadow:
+        0 5px 25px rgba(0,0,0,.7);
+
+    }
+
+
+    .ka-about-badge small{
+
+      position:relative;
+
+      z-index:2;
+
+      margin-top:10px;
+
+      color:var(--gold-light);
+
+      font-size:11px;
+
+      font-weight:800;
+
+      letter-spacing:3px;
+
+    }
+
+
+    @keyframes badgeSpin{
+
+      from{
+        transform:rotate(0deg);
+      }
+
+      to{
+        transform:rotate(360deg);
+      }
+
+    }
+
+
+    /* =====================================================
+       GENERAL CARD GRID
+    ====================================================== */
+
+    .ka-card-grid{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:22px;
+
+      margin-top:45px;
+
+    }
+
+
+    /* =====================================================
+       GLASS CARD
+    ====================================================== */
+
+    .ka-card{
+
+      position:relative;
+
+      padding:34px;
+
+      min-height:235px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.28);
+
+      background:
+        rgba(255,255,255,.13);
+
+      backdrop-filter:
+        blur(10px);
+
+      -webkit-backdrop-filter:
+        blur(10px);
+
+      box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.22);
+
+      transition:
+        transform .4s ease,
+        border-color .4s ease,
+        background .4s ease,
+        box-shadow .4s ease;
+
+      overflow:hidden;
+
+    }
+
+
+    .ka-card::before{
+
+      content:"";
+
+      position:absolute;
+
+      top:0;
+      left:0;
+
+      width:0;
+      height:3px;
+
+      background:var(--gold);
+
+      transition:.4s ease;
+
+    }
+
+
+    .ka-card::after{
+
+      content:"";
+
+      position:absolute;
+
+      top:-120%;
+      left:-60%;
+
+      width:40%;
+      height:300%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.12),
+          transparent
+        );
+
+      transform:rotate(20deg);
+
+      transition:.8s ease;
+
+      pointer-events:none;
+
+    }
+
+
+    .ka-card:hover{
+
+      transform:
+        translateY(-10px)
+        scale(1.01);
+
+      border-color:
+        rgba(245,180,0,.65);
+
+      background:
+        rgba(255,255,255,.18);
+
+      box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.35);
+
+    }
+
+
+    .ka-card:hover::before{
+      width:100%;
+    }
+
+
+    .ka-card:hover::after{
+      left:130%;
+    }
+
+
+    .ka-card h3{
+
+      margin-bottom:15px;
+
+      color:#fff;
+
+      font-size:21px;
+
+      line-height:1.3;
+
+      text-shadow:
+        0 3px 12px rgba(0,0,0,.65);
+
+    }
+
+
+    .ka-card p{
+
+      font-size:15px;
+
+      color:
+        rgba(255,255,255,.88);
+
+    }
+
+
+    .ka-card p strong{
+      color:var(--gold-light);
+    }
+
+
+    /* =====================================================
+       SKILLS — 3 CARDS
+    ====================================================== */
+
+    .ka-skill-cards{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:22px;
+
+      margin-top:45px;
+
+    }
+
+
+    .ka-skill-card{
+
+      position:relative;
+
+      min-height:390px;
+
+      padding:38px 30px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.27);
+
+      background:
+        rgba(255,255,255,.12);
+
+      backdrop-filter:blur(10px);
+
+      -webkit-backdrop-filter:blur(10px);
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.25);
+
+      overflow:hidden;
+
+      transition:
+        transform .4s ease,
+        border-color .4s ease,
+        background .4s ease;
+
+    }
+
+
+    .ka-skill-card:hover{
+
+      transform:
+        translateY(-10px);
+
+      border-color:
+        rgba(245,180,0,.70);
+
+      background:
+        rgba(255,255,255,.17);
+
+    }
+
+
+    .ka-skill-card-number{
+
+      color:var(--gold);
+
+      font-size:12px;
+
+      font-weight:900;
+
+      letter-spacing:3px;
+
+      margin-bottom:25px;
+
+    }
+
+
+    .ka-skill-card h3{
+
+      font-size:25px;
+
+      line-height:1.25;
+
+      margin-bottom:18px;
+
+    }
+
+
+    .ka-skill-card p{
+
+      font-size:15px;
+
+      line-height:1.7;
+
+      margin-bottom:24px;
+
+    }
+
+
+    .ka-skill-list{
+
+      display:flex;
+
+      flex-wrap:wrap;
+
+      gap:8px;
+
+    }
+
+
+    .ka-skill-list span{
+
+      padding:9px 12px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.23);
+
+      background:
+        rgba(0,0,0,.14);
+
+      border-radius:50px;
+
+      color:#fff;
+
+      font-size:11px;
+
+      font-weight:800;
+
+      transition:.3s ease;
+
+    }
+
+
+    .ka-skill-list span:hover{
+
+      color:#111;
+
+      background:var(--gold);
+
+      border-color:var(--gold);
+
+    }
+
+
+    /* =====================================================
+       OPERATIONS LOG
+    ====================================================== */
+
+    .ka-operations-grid{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:22px;
+
+      margin-top:48px;
+
+    }
+
+
+    .ka-operation-card{
+
+      position:relative;
+
+      min-height:520px;
+
+      overflow:hidden;
+
+      border:
+        1px solid
+        rgba(255,255,255,.28);
+
+      background:#101820;
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.30);
+
+      transition:
+        transform .45s ease,
+        border-color .4s ease;
+
+    }
+
+
+    .ka-operation-card:hover{
+
+      transform:
+        translateY(-12px);
+
+      border-color:
+        rgba(245,180,0,.70);
+
+    }
+
+
+    .ka-operation-image{
+
+      position:relative;
+
+      height:220px;
+
+      overflow:hidden;
+
+    }
+
+
+    .ka-operation-image::after{
+
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      background:
+        linear-gradient(
+          0deg,
+          rgba(5,10,15,.72),
+          transparent 70%
+        );
+
+    }
+
+
+    .ka-operation-image img{
+
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+
+      display:block;
+
+      transition:
+        transform .7s cubic-bezier(.16,1,.3,1),
+        filter .5s ease;
+
+    }
+
+
+    .ka-operation-card:hover
+    .ka-operation-image img{
+
+      transform:scale(1.08);
+
+      filter:saturate(1.12);
+
+    }
+
+
+    .ka-operation-number{
+
+      position:absolute;
+
+      top:18px;
+      left:18px;
+
+      z-index:2;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      width:46px;
+      height:46px;
+
+      background:var(--gold);
+
+      color:#111;
+
+      font-size:12px;
+
+      font-weight:900;
+
+      border-radius:50%;
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,.35);
+
+    }
+
+
+    .ka-operation-content{
+
+      padding:30px;
+
+    }
+
+
+    .ka-operation-date{
+
+      display:block;
+
+      margin-bottom:10px;
+
+      color:var(--gold-light);
+
+      font-size:11px;
+
+      font-weight:900;
+
+      letter-spacing:2px;
+
+    }
+
+
+    .ka-operation-content h3{
+
+      font-size:22px;
+
+      line-height:1.3;
+
+      margin-bottom:8px;
+
+    }
+
+
+    .ka-operation-company{
+
+      display:block;
+
+      margin-bottom:18px;
+
+      color:
+        rgba(255,255,255,.68);
+
+      font-size:13px;
+
+      font-weight:700;
+
+    }
+
+
+    .ka-operation-content ul{
+
+      list-style:none;
+
+    }
+
+
+    .ka-operation-content li{
+
+      position:relative;
+
+      padding-left:18px;
+
+      margin-bottom:9px;
+
+      color:
+        rgba(255,255,255,.86);
+
+      font-size:14px;
+
+      line-height:1.6;
+
+    }
+
+
+    .ka-operation-content li::before{
+
+      content:"?";
+
+      position:absolute;
+
+      left:0;
+
+      color:var(--gold);
+
+      font-weight:900;
+
+    }
+
+
+    /* =====================================================
+       PROJECTS
+    ====================================================== */
+
+    .ka-project-card{
+
+      min-height:300px;
+
+    }
+
+
+    .ka-project-tech{
+
+      display:flex;
+
+      flex-wrap:wrap;
+
+      gap:7px;
+
+      margin-top:20px;
+
+    }
+
+
+    .ka-project-tech span{
+
+      padding:7px 10px;
+
+      border:
+        1px solid
+        rgba(245,180,0,.35);
+
+      color:var(--gold-light);
+
+      font-size:10px;
+
+      font-weight:800;
+
+      border-radius:50px;
+
+    }
+
+
+    /* =====================================================
+       CERTIFICATIONS
+    ====================================================== */
+
+    .ka-cert-card{
+
+      min-height:280px;
+
+    }
+
+
+    .ka-cert-badge{
+
+      display:inline-flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      min-width:65px;
+
+      min-height:65px;
+
+      margin-bottom:22px;
+
+      padding:10px;
+
+      border-radius:50%;
+
+      background:var(--gold);
+
+      color:#111;
+
+      font-weight:900;
+
+      font-size:12px;
+
+      box-shadow:
+        0 12px 35px rgba(245,180,0,.22);
+
+    }
+
+
+    /* =====================================================
+       TIMELINE
+    ====================================================== */
+
+    .ka-timeline{
+
+      margin-top:48px;
+
+      border-left:
+        1px solid
+        rgba(245,180,0,.55);
+
+    }
+
+
+    .ka-timeline-item{
+
+      position:relative;
+
+      display:flex;
+
+      gap:30px;
+
+      padding:
+        0 0 55px 38px;
+
+    }
+
+
+    .ka-timeline-item:last-child{
+      padding-bottom:0;
+    }
+
+
+    .ka-timeline-item > span{
+
+      position:absolute;
+
+      left:-18px;
+
+      width:35px;
+      height:35px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      border-radius:50%;
+
+      background:var(--gold);
+
+      color:#111;
+
+      font-size:10px;
+
+      font-weight:900;
+
+      box-shadow:
+        0 0 0 7px
+        rgba(245,180,0,.10),
+
+        0 5px 25px
+        rgba(0,0,0,.25);
+
+    }
+
+
+    .ka-timeline-item h3{
+
+      margin-bottom:10px;
+
+      font-size:22px;
+
+      color:#fff;
+
+    }
+
+
+    .ka-timeline-item p{
+
+      font-size:16px;
+
+    }
+
+
+    /* =====================================================
+       EDUCATION
+    ====================================================== */
+
+    .ka-education{
+
+      margin-top:55px;
+
+      display:grid;
+
+      grid-template-columns:1fr 1fr;
+
+      gap:22px;
+
+    }
+
+
+    .ka-education-card{
+
+      padding:32px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.25);
+
+      background:
+        rgba(255,255,255,.11);
+
+      backdrop-filter:blur(8px);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.22);
+
+      transition:.4s ease;
+
+    }
+
+
+    .ka-education-card:hover{
+
+      transform:
+        translateY(-8px);
+
+      border-color:
+        rgba(245,180,0,.55);
+
+    }
+
+
+    .ka-education-card .ka-edu-number{
+
+      color:var(--gold-light);
+
+      font-size:11px;
+
+      font-weight:900;
+
+      letter-spacing:3px;
+
+      margin-bottom:16px;
+
+    }
+
+
+    .ka-education-card h3{
+
+      font-size:22px;
+
+      line-height:1.35;
+
+      margin-bottom:14px;
+
+    }
+
+
+    .ka-education-card p{
+      font-size:15px;
+    }
+
+
+    /* =====================================================
+       ACHIEVEMENTS
+    ====================================================== */
+
+    .ka-achievements{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap:18px;
+
+      margin-top:45px;
+
+    }
+
+
+    .ka-achievements > div{
+
+      padding:32px 20px;
+
+      text-align:center;
+
+      border:
+        1px solid
+        rgba(255,255,255,.25);
+
+      background:
+        rgba(255,255,255,.11);
+
+      backdrop-filter:blur(8px);
+
+      transition:.35s ease;
+
+    }
+
+
+    .ka-achievements > div:hover{
+
+      transform:
+        translateY(-8px);
+
+      border-color:
+        rgba(245,180,0,.65);
+
+      background:
+        rgba(255,255,255,.17);
+
+    }
+
+
+    .ka-achievements strong{
+
+      display:block;
+
+      margin-bottom:12px;
+
+      color:var(--gold-light);
+
+      font-size:30px;
+
+    }
+
+
+    .ka-achievements p{
+
+      font-size:13px;
+
+      margin:auto;
+
+    }
+
+
+    /* =====================================================
+       CONTACT
+    ====================================================== */
+
+    .ka-contact{
+
+      text-align:center;
+
+    }
+
+
+    .ka-contact-inner{
+      text-align:center;
+    }
+
+
+    .ka-contact p{
+
+      margin:
+        0 auto 30px;
+
+    }
+
+
+    .ka-contact-btn{
+
+      display:inline-flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      padding:16px 30px;
+
+      background:var(--gold);
+
+      color:#111;
+
+      text-decoration:none;
+
+      font-weight:900;
+
+      font-size:14px;
+
+      box-shadow:
+        0 12px 35px
+        rgba(245,180,0,.25);
+
+      transition:.3s ease;
+
+    }
+
+
+    .ka-contact-btn:hover{
+
+      background:#fff;
+
+      transform:
+        translateY(-4px);
+
+      box-shadow:
+        0 18px 40px
+        rgba(255,255,255,.16);
+
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+
+    .ka-footer{
+
+      position:relative;
+
+      min-height:560px;
+
+      overflow:hidden;
+
+      background:#091018;
+
+      color:#fff;
+
+    }
+
+
+    .ka-footer-image{
+
+      position:absolute;
+
+      inset:0;
+
+    }
+
+
+    .ka-footer-image img{
+
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+
+      object-position:center;
+
+      opacity:.60;
+
+      filter:
+        saturate(.9)
+        brightness(.78);
+
+      transform:scale(1.03);
+
+    }
+
+
+    .ka-footer-overlay{
+
+      position:absolute;
+
+      inset:0;
+
+      background:
+
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.70),
+          rgba(0,0,0,.38),
+          rgba(0,0,0,.60)
+        ),
+
+        linear-gradient(
+          0deg,
+          rgba(0,0,0,.78),
+          transparent 60%
+        );
+
+    }
+
+
+    .ka-footer-content{
+
+      position:relative;
+
+      z-index:2;
+
+      width:min(var(--max),92%);
+
+      min-height:560px;
+
+      margin:auto;
+
+      padding:
+        80px 0 30px;
+
+      display:flex;
+
+      flex-direction:column;
+
+      align-items:center;
+
+      justify-content:center;
+
+      text-align:center;
+
+    }
+
+
+    .ka-footer-brand h2{
+
+      font-size:
+        clamp(42px,6vw,75px);
+
+      letter-spacing:-3px;
+
+      margin-bottom:15px;
+
+    }
+
+
+    .ka-footer-brand h2 span{
+      color:var(--gold);
+    }
+
+
+    .ka-footer-brand p{
+
+      color:#fff;
+
+      font-size:11px;
+
+      font-weight:700;
+
+      letter-spacing:4px;
+
+    }
+
+
+    /* =====================================================
+       FOOTER LINKS
+    ====================================================== */
+
+    .ka-footer-links{
+
+      display:flex;
+
+      justify-content:center;
+
+      flex-wrap:wrap;
+
+      gap:25px;
+
+      margin:
+        45px 0 25px;
+
+    }
+
+
+    .ka-footer-links a{
+
+      color:
+        rgba(255,255,255,.82);
+
+      text-decoration:none;
+
+      font-size:12px;
+
+      font-weight:700;
+
+      letter-spacing:1px;
+
+      transition:.3s ease;
+
+    }
+
+
+    .ka-footer-links a:hover{
+      color:var(--gold);
+    }
+
+
+    /* =====================================================
+       SOCIAL
+    ====================================================== */
+
+    .ka-social{
+
+      display:flex;
+
+      flex-wrap:wrap;
+
+      justify-content:center;
+
+      gap:10px;
+
+    }
+
+
+    .ka-social a{
+
+      padding:
+        10px 17px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.28);
+
+      border-radius:50px;
+
+      color:
+        rgba(255,255,255,.85);
+
+      background:
+        rgba(255,255,255,.07);
+
+      backdrop-filter:blur(6px);
+
+      text-decoration:none;
+
+      font-size:11px;
+
+      font-weight:700;
+
+      transition:.3s ease;
+
+    }
+
+
+    .ka-social a:hover{
+
+      color:#111;
+
+      background:var(--gold);
+
+      border-color:var(--gold);
+
+      transform:translateY(-3px);
+
+    }
+
+
+    /* =====================================================
+       EMAIL
+    ====================================================== */
+
+    .ka-email{
+
+      margin-top:25px;
+
+      color:var(--gold-light);
+
+      text-decoration:none;
+
+      font-size:15px;
+
+      font-weight:700;
+
+      transition:.3s ease;
+
+    }
+
+
+    .ka-email:hover{
+      color:#fff;
+    }
+
+
+    /* =====================================================
+       FOOTER BOTTOM
+    ====================================================== */
+
+    .ka-footer-bottom{
+
+      width:100%;
+
+      margin-top:55px;
+
+      padding-top:22px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.20);
+
+      display:flex;
+
+      justify-content:space-between;
+
+      gap:20px;
+
+      color:
+        rgba(255,255,255,.65);
+
+      font-size:10px;
+
+      letter-spacing:.5px;
+
+    }
+
+
+    .ka-footer-bottom strong{
+      color:var(--gold);
+    }
+
+
+    /* =====================================================
+       REVEAL
+    ====================================================== */
+
+    .reveal{
+
+      opacity:0;
+
+      transform:
+        translateY(40px)
+        scale(.98);
+
+      transition:
+        opacity .8s ease,
+        transform .9s cubic-bezier(.16,1,.3,1);
+
+    }
+
+
+    .reveal.visible{
+
+      opacity:1;
+
+      transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVE — 1100
+    ====================================================== */
+
+    @media(max-width:1100px){
+
+      .ka-nav-inner{
+        gap:24px;
+      }
+
+      .ka-skill-cards{
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .ka-operations-grid{
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVE — 900
+    ====================================================== */
+
+    @media(max-width:900px){
+
+      .ka-card-grid{
+        grid-template-columns:1fr;
+      }
+
+      .ka-achievements{
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .ka-about-layout{
+        grid-template-columns:1fr;
+      }
+
+      .ka-education{
+        grid-template-columns:1fr;
+      }
+
+      .ka-skill-cards{
+        grid-template-columns:1fr;
+      }
+
+      .ka-operations-grid{
+        grid-template-columns:1fr;
+      }
+
+      .ka-nav-inner{
+
+        gap:15px 25px;
+
+        padding:15px 0;
+
+      }
+
+      .ka-section{
+        background-attachment:scroll;
+      }
+
+    }
+
+
+    /* =====================================================
+       TABLET / MOBILE
+    ====================================================== */
+
+    @media(max-width:768px){
+
+      .kignature-hero{
+
+        height:650px;
+
+        min-height:650px;
+
+      }
+
+
+      .kignature-brand h1{
+
+        font-size:58px;
+
+        letter-spacing:-3px;
+
+      }
+
+
+      .kignature-brand p{
+
+        font-size:9px;
+
+        letter-spacing:3px;
+
+      }
+
+
+      .kignature-category{
+
+        top:30px;
+
+        font-size:8px;
+
+        padding:10px 15px;
+
+      }
+
+
+      .kignature-side{
+        display:none;
+      }
+
+
+      .kignature-arrows{
+
+        top:auto;
+
+        bottom:78px;
+
+        right:20px;
+
+        transform:none;
+
+        flex-direction:row;
+
+      }
+
+
+      .kignature-arrow{
+
+        width:42px;
+
+        height:42px;
+
+      }
+
+
+      .kignature-controls{
+
+        bottom:23px;
+
+      }
+
+
+      .kignature-dots{
+
+        max-width:270px;
+
+      }
+
+
+      .kignature-slide-dot{
+
+        width:9px;
+
+      }
+
+
+      .kignature-slide-dot.active{
+
+        width:28px;
+
+      }
+
+
+      .ka-section{
+
+        padding:90px 20px;
+
+      }
+
+
+      .ka-section h2{
+
+        font-size:
+          clamp(36px,9vw,52px);
+
+      }
+
+
+      .ka-nav-inner a{
+
+        font-size:11px;
+
+      }
+
+
+      .ka-footer-bottom{
+
+        flex-direction:column;
+
+        align-items:center;
+
+        text-align:center;
+
+      }
+
+
+      .ka-about-info{
+
+        grid-template-columns:1fr;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       SMALL MOBILE
+    ====================================================== */
+
+    @media(max-width:480px){
+
+      .kignature-hero{
+
+        height:600px;
+
+        min-height:600px;
+
+      }
+
+
+      .kignature-brand h1{
+
+        font-size:45px;
+
+        letter-spacing:-2px;
+
+      }
+
+
+      .kignature-brand p{
+
+        font-size:7px;
+
+        letter-spacing:2px;
+
+      }
+
+
+      .kignature-category{
+
+        max-width:90%;
+
+        overflow:hidden;
+
+        text-overflow:ellipsis;
+
+        font-size:7px;
+
+      }
+
+
+      .ka-achievements{
+
+        grid-template-columns:
+          1fr 1fr;
+
+      }
+
+
+      .ka-footer-links{
+
+        gap:15px;
+
+      }
+
+
+      .ka-operation-content{
+
+        padding:24px;
+
+      }
+
+
+      .ka-operation-card{
+
+        min-height:auto;
+
+      }
+
+
+      .ka-skill-card{
+
+        min-height:auto;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       REDUCED MOTION
+    ====================================================== */
+
+    @media(prefers-reduced-motion:reduce){
+
+      html{
+        scroll-behavior:auto;
+      }
+
+      *,
+      *::before,
+      *::after{
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        transition-duration:.01ms !important;
+
+      }
+
+    }
