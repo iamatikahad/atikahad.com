@@ -1,6 +1,4 @@
-# robots.txt
-
 User-agent: *
 Allow: /
 
-Sitemap: https://atikahad-web.vercel.app/sitemap.xml
+Sitemap: https://iamatikahad.github.io/atikahad.com/sitemap.xml
