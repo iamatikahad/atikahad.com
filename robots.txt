@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://iamatikahad.github.io/atikahad.com/sitemap.xml
 Sitemap: https://atikahadcom.vercel.app/sitemap.xml
